@@ -8,15 +8,15 @@ pipeline {
         sh 'mkdir app'
       }
     }
-    stage('Build') {
-      dir("app") {
+    dir("app") {
         sh "pwd"
+    }
+    stage('Build') {
       steps {
         sh 'npm install'
         sh 'npm run build'
       }
-    }
-  } 
+    } 
     stage('test') {
       steps {
         sh 'npm run test'
