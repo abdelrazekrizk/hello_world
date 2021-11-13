@@ -11,6 +11,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'cd app'
+        sh 'npm init'
         sh 'npm install'
         sh 'npm run build'
       }
