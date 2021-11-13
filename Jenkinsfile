@@ -8,23 +8,32 @@ pipeline {
     }
     stage('Create and activate a virtual environment') {
       steps {
-        sh 'make . ./Makefile'
+        sh 'make'
       }
     }
     stage('test') {
       steps {
+        sh 'source ~/.devops/bin/activate'
         sh 'python test.py'
       }
     }
     stage('build') {
       steps {
-        sh '. ./run_docker.sh'
+        sh 'source ~/.devops/bin/activate'
+        sh '. run_docker.sh'
       }
     }
     stage('uploads an image to Docker Hub') {
       steps {
-        sh '. ./run_docker.sh'
+        sh 'source ~/.devops/bin/activate'
+        sh '. upload_docker.sh'
       }
     }
+    stage('run_kubernete') {
+      steps {
+        sh 'source ~/.devops/bin/activate'
+        sh '. run_kubernete.sh'
+      }
+    }    
   }
 }
