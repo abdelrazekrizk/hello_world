@@ -8,11 +8,9 @@ pipeline {
         sh 'mkdir app'
       }
     }
-    dir("app") {
-        sh "pwd"
-    }
     stage('Build') {
       steps {
+        sh 'cd app'
         sh 'npm install'
         sh 'npm run build'
       }
