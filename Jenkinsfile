@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Create and activate a virtual environment') {
       steps {
-        sh 'virtualenv .devops'
+        sh 'python3 -m venv .devops'
 	      sh 'source .devops/bin/activate'
       }
     }
