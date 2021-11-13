@@ -7,32 +7,32 @@ pipeline {
       }
     }
     stage('Create and activate a virtual environment') {
-      steps {
-        sh 'python3 -m venv ~/.devops'
-	      sh 'source ~/.devops/bin/activate'
+      dir("hello_world") {
+        sh 'virtualenv .devops'
+	      sh 'source .devops/bin/activate'
       }
     }
     stage('test') {
-      steps {
-        sh 'source ~/.devops/bin/activate'
+      steps
+        sh 'source .devops/bin/activate'
         sh 'python test.py'
       }
     }
     stage('build') {
       steps {
-        sh 'source ~/.devops/bin/activate'
+        sh 'source .devops/bin/activate'
         sh '. run_docker.sh'
       }
     }
     stage('uploads an image to Docker Hub') {
       steps {
-        sh 'source ~/.devops/bin/activate'
+        sh 'source .devops/bin/activate'
         sh '. upload_docker.sh'
       }
     }
     stage('run_kubernete') {
       steps {
-        sh 'source ~/.devops/bin/activate'
+        sh 'source .devops/bin/activate'
         sh '. run_kubernete.sh'
       }
     }    
