@@ -8,31 +8,27 @@ pipeline {
     }
     stage('Create and activate a virtual environment') {
       steps {
-        sh 'python3 -m venv .devops'
-	      sh 'source .devops/bin/activate'
+        sh 'pip install --upgrade pip'
+	      sh 'pip install -r requirements.txt'
       }
     }
     stage('test') {
       steps {
-        sh 'source .devops/bin/activate'
         sh 'python test.py'
       }
     }
     stage('build') {
       steps {
-        sh 'source .devops/bin/activate'
         sh '. run_docker.sh'
       }
     }
     stage('uploads an image to Docker Hub') {
       steps {
-        sh 'source .devops/bin/activate'
         sh '. upload_docker.sh'
       }
     }
     stage('run_kubernete') {
       steps {
-        sh 'source .devops/bin/activate'
         sh '. run_kubernete.sh'
       }
     }    
