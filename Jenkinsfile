@@ -7,7 +7,7 @@ pipeline {
       }
     }
     stage('Create and activate a virtual environment') {
-      dir("hello_world") {
+      steps {
         sh 'virtualenv .devops'
 	      sh 'source .devops/bin/activate'
       }
