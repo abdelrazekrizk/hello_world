@@ -26,10 +26,5 @@ pipeline {
         sh '. ./run_docker.sh'
       }
     }
-    stage('test') {
-      steps {
-        sh 'python test.py'
-      }
-    }
   }
 }
