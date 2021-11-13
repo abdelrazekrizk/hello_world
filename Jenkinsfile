@@ -8,6 +8,8 @@ pipeline {
     }
     stage('Create and activate a virtual environment') {
       steps {
+        sh 'python3 -m venv .devops'
+        sh '..devops'
         sh 'pip install --upgrade pip'
 	      sh 'pip install -r requirements.txt'
       }
