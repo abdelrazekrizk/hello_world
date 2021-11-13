@@ -13,7 +13,7 @@ pipeline {
       }
     }
     stage('test') {
-      steps
+      steps {
         sh 'source .devops/bin/activate'
         sh 'python test.py'
       }
